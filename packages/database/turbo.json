@@ -1,0 +1,10 @@
+{
+  "extends": ["//"],
+  "pipeline": {
+    "build": {
+      "outputs": ["dist/**"],
+      "dependsOn": ["^build"],
+      "dotEnv": [".env.*", "../../.env.*", "../../.env.*local"]
+    }
+  }
+}
