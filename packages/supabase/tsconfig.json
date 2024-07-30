@@ -1,0 +1,13 @@
+{
+  "extends": "@stewardly/typescript-config/base.json",
+  "compilerOptions": {
+    "lib": ["dom", "ES2015"],
+    "types": ["jest", "node"],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"]
+    }
+  },
+  "include": ["."],
+  "exclude": ["dist", "build", "node_modules"]
+}
