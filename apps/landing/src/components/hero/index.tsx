@@ -1,10 +1,36 @@
 /* eslint-disable @next/next/no-img-element */
-import React from 'react'
-import Image from 'next/image'
+'use client'
+import React, { useActionState, useEffect } from 'react'
+
+import { insertInviteRecord } from '@/app/actions'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
+import { useToast } from '@/components/ui/toast'
 
 const Hero: React.FC<object> = () => {
+  const [data, action, pending] = useActionState(insertInviteRecord, {
+    data: undefined,
+    error: false,
+  })
+
+  const { toast } = useToast()
+
+  useEffect(() => {
+    if (data.error) {
+      toast({
+        title: 'Uh Oh!',
+        description: 'Sorry, something went wrong. Please try again.',
+        variant: 'destructive',
+      })
+    } else {
+      toast({
+        title: 'Success!',
+        description: 'You have been added to the waitlist.',
+        variant: 'success',
+      })
+    }
+  }, [data.error, toast])
+
   return (
     <div className="bg-black text-white flex align-middle items-center min-h-screen">
       <section className="w-full">
@@ -25,14 +51,14 @@ const Hero: React.FC<object> = () => {
                 </p>
               </div>
               <div className="w-full max-w-sm space-y-2">
-                <form className="flex space-x-2">
+                <form className="flex space-x-2" action={action}>
                   <Input
                     className="max-w-lg flex-1"
                     placeholder="Enter your email"
                     type="email"
                     name="email"
                   />
-                  <Button variant="success" type="submit">
+                  <Button variant="success" type="submit" disabled={pending}>
                     {"I'm Interested"}
                   </Button>
                 </form>
