@@ -15,6 +15,13 @@
       "when": 1723099492801,
       "tag": "0001_mixed_hedge_knight",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1723282961937,
+      "tag": "0002_narrow_lady_ursula",
+      "breakpoints": true
     }
   ]
 }

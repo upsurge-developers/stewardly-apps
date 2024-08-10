@@ -194,7 +194,7 @@
 -- );
 -- --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "invites" (
-	"uuid4" uuid,
+	"uuid4" uuid NOT NULL PRIMARY KEY DEFAULT gen_random_uuid(),
 	"email" text NOT NULL,
 	"createdAt" timestamp DEFAULT now() NOT NULL
 );
