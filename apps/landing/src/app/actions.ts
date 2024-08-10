@@ -3,10 +3,13 @@ import { db, invites, NewInvite } from '@stewardly/database'
 
 type PrevData = {
   data: NewInvite | undefined
-  error: boolean
+  error: boolean | undefined
 }
 
-export const insertInviteRecord = async (_: PrevData, formData: FormData) => {
+export const insertInviteRecord = async (
+  _: PrevData | null,
+  formData: FormData,
+) => {
   const email = formData.get('email') as string
 
   try {

@@ -8,15 +8,12 @@ import { Button } from '@/components/ui/button'
 import { useToast } from '@/components/ui/toast'
 
 const Hero: React.FC<object> = () => {
-  const [data, action, pending] = useActionState(insertInviteRecord, {
-    data: undefined,
-    error: false,
-  })
+  const [data, action, pending] = useActionState(insertInviteRecord, null)
 
   const { toast } = useToast()
 
   useEffect(() => {
-    if (data.error) {
+    if (data?.error) {
       toast({
         title: 'Uh Oh!',
         description: 'Sorry, something went wrong. Please try again.',
@@ -29,7 +26,7 @@ const Hero: React.FC<object> = () => {
         variant: 'success',
       })
     }
-  }, [data.error, toast])
+  }, [data?.error, toast])
 
   return (
     <div className="bg-black text-white flex align-middle items-center min-h-screen">

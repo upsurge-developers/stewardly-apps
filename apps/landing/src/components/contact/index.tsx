@@ -1,8 +1,30 @@
-import React from 'react'
+'use client'
+import React, { useActionState, useEffect } from 'react'
 import { Input } from '../ui/input'
 import { Button } from '../ui/button'
+import { insertInviteRecord } from '@/app/actions'
+import { useToast } from '../ui/toast'
 
 const Contact: React.FC<object> = () => {
+  const [data, action, pending] = useActionState(insertInviteRecord, null)
+
+  const { toast } = useToast()
+
+  useEffect(() => {
+    if (data?.error) {
+      toast({
+        title: 'Uh Oh!',
+        description: 'Sorry, something went wrong. Please try again.',
+        variant: 'destructive',
+      })
+    } else {
+      toast({
+        title: 'Success!',
+        description: 'You have been added to the waitlist.',
+        variant: 'success',
+      })
+    }
+  }, [data?.error, toast])
   return (
     <section className="flex flex-1 items-center bg-black">
       <div className="flex w-screen flex-col lg:mt-10 xl:mt-5">
@@ -22,7 +44,10 @@ const Contact: React.FC<object> = () => {
         </p>
 
         <div className="mt-8 flex flex-col space-y-3 sm:-mx-2 sm:flex-row sm:justify-center sm:space-y-0">
-          <form className="mt-8 flex flex-grow-0 space-y-3 sm:-mx-2 sm:flex-row sm:justify-center sm:space-y-0">
+          <form
+            className="mt-8 flex flex-grow-0 space-y-3 sm:-mx-2 sm:flex-row sm:justify-center sm:space-y-0"
+            action={action}
+          >
             <Input
               id="email"
               type="email"
@@ -31,7 +56,7 @@ const Contact: React.FC<object> = () => {
               placeholder="Email Address"
             />
 
-            <Button variant="success" type="submit">
+            <Button variant="success" type="submit" disabled={pending}>
               Notify Me
             </Button>
           </form>
