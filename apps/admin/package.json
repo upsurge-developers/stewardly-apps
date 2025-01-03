@@ -9,14 +9,21 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@stewardly/database": "workspace:*",
-    "@stewardly/ui": "workspace:*",
+    "@radix-ui/react-icons": "^1.3.0",
+    "@radix-ui/react-label": "^2.1.1",
+    "@radix-ui/react-slot": "^1.1.1",
+    "@radix-ui/react-toast": "^1.2.1",
     "@stewardly/auth": "workspace:*",
+    "@stewardly/database": "workspace:*",
     "better-auth": "^1.1.8",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.0",
+    "lucide-react": "^0.372.0",
     "next": "15.1.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "tailwind-merge": "^2.3.0"
   },
   "devDependencies": {
     "@types/node": "^20.17.11",
