@@ -10,7 +10,7 @@ import {
   pgEnum,
 } from 'drizzle-orm/pg-core'
 import { relations } from 'drizzle-orm/relations'
-import { usersInAuth } from './auth'
+import { user } from './auth'
 
 export const invites = pgTable('invites', {
   id: uuid('uuid4').notNull().defaultRandom().primaryKey(),
@@ -24,9 +24,9 @@ export const roles = pgEnum('roles', ['admin', 'editor', 'user'])
 
 export const profiles = pgTable('profiles', {
   id: uuid('id').primaryKey().notNull().defaultRandom(),
-  userId: uuid('user')
+  userId: text('user')
     .notNull()
-    .references(() => usersInAuth.id),
+    .references(() => user.id),
   firstName: text('first_name'),
   lastName: text('last_name'),
   createdAt: timestamp('created_at', { withTimezone: true }).defaultNow(),
@@ -53,6 +53,18 @@ export const members = pgTable('members', {
   id: uuid('id').primaryKey().notNull().defaultRandom(),
   userId: uuid('user_id').references(() => profiles.id),
   email: text('email'),
+})
+
+export const staff = pgTable('staff', {
+  id: uuid('id').primaryKey().notNull().defaultRandom(),
+  userId: uuid('user_id').references(() => profiles.id),
+  email: text('email'),
+  position: text('position').notNull(),
+  department: text('department'),
+  startDate: timestamp('start_date', { withTimezone: true }).notNull(),
+  endDate: timestamp('end_date', { withTimezone: true }),
+  isActive: boolean('is_active').default(true),
+  churchId: uuid('church_id').references(() => churches.id),
 })
 
 export const sermons = pgTable('sermons', {
@@ -173,4 +185,14 @@ export const churchesRelations = relations(churches, ({ one, many }) => ({
   }),
   events: many(events),
   members: many(profiles),
+  staff: many(staff),
+}))
+
+// Add staff relations
+export const staffRelations = relations(staff, ({ one }) => ({
+  user: one(profiles, { fields: [staff.userId], references: [profiles.id] }),
+  church: one(churches, {
+    fields: [staff.churchId],
+    references: [churches.id],
+  }),
 }))

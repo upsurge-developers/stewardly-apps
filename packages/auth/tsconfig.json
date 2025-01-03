@@ -2,7 +2,7 @@
   "extends": "@stewardly/typescript-config/base.json",
   "compilerOptions": {
     "lib": ["dom", "ES2015"],
-    "types": ["jest", "node"],
+    "types": ["jest"],
     "baseUrl": ".",
     "paths": {
       "@/*": ["./*"]

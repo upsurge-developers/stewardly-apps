@@ -1,5 +1,5 @@
 {
-  "name": "@stewardly/supabase",
+  "name": "@stewardly/auth",
   "version": "1.0.0",
   "description": "",
   "main": "./dist/index.js",
@@ -29,9 +29,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@supabase/ssr": "^0.4.0",
-    "@supabase/supabase-js": "^2.43.4",
-    "dotenv": "^16.4.5",
-    "next": "^14.2.5"
+    "better-auth": "^1.1.8",
+    "@stewardly/database": "workspace:*"
   }
 }
