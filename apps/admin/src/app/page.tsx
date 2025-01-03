@@ -1,9 +1,8 @@
-import { Button } from '@stewardly/ui'
-import { auth } from '@stewardly/auth'
+import { Button } from '~/components'
 
 export default function Home() {
   return (
-    <Button variant="success" size="lg">
+    <Button variant="default" size="lg">
       Hello
     </Button>
   )

@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
-// import './globals.css'
-import '@stewardly/ui/dist/index.css'
+import './globals.css'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -15,8 +14,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="dark">
-        <div className="bg-gray-100 dark:bg-slate-900"></div>
-        {children}
+        <div className="bg-gray-100 dark:bg-slate-900 min-h-screen">
+          {children}
+        </div>
       </body>
     </html>
   )
