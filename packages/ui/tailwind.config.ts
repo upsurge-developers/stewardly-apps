@@ -1,5 +1,5 @@
 import { type Config } from 'tailwindcss'
-import sharedConfig from "@stewardly/tailwind-config/tailwind.config.ts"
+import sharedConfig from '@stewardly/tailwind-config/tailwind.config'
 
 const config: Pick<Config, 'presets' | 'content' | 'plugins'> = {
   content: ['./src/**/*.{ts,tsx}'],

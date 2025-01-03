@@ -1,4 +1,4 @@
-export { Button, buttonVariants } from './shadcn-ui/ui/button'
+export { Button, buttonVariants } from './ui/button'
 export {
   Card,
   CardHeader,
@@ -6,4 +6,4 @@ export {
   CardTitle,
   CardDescription,
   CardContent,
-} from './shadcn-ui/ui/card'
+} from './ui/card'
