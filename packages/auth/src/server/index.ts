@@ -1,11 +1,12 @@
+import { config } from 'dotenv'
 import { betterAuth } from 'better-auth'
-import { drizzleAdapter } from 'better-auth/adapters/drizzle'
-// import { discord } from 'better-auth/social-providers'
-import { db } from '@stewardly/database'
+import { Pool } from 'pg'
+
+config({ path: '.env' })
 
 export const auth = betterAuth({
-  database: drizzleAdapter(db, {
-    provider: 'pg',
+  database: new Pool({
+    connectionString: process.env.AUTH_DATABASE_URL,
   }),
   emailAndPassword: {
     enabled: true,

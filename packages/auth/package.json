@@ -20,6 +20,7 @@
     "@stewardly/typescript-config": "workspace:*",
     "@types/jest": "^29.5.12",
     "@types/node": "^20.11.24",
+    "@types/pg": "^8.11.10",
     "autoprefixer": "^10.4.19",
     "jest": "^29.7.0",
     "tsup": "^8.0.2",
@@ -29,7 +30,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@neondatabase/serverless": "^0.10.4",
+    "@stewardly/database": "workspace:*",
     "better-auth": "^1.1.8",
-    "@stewardly/database": "workspace:*"
+    "dotenv": "^16.4.5",
+    "pg": "^8.13.1"
   }
 }
