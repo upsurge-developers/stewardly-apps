@@ -3,14 +3,11 @@ import {
   uuid,
   text,
   timestamp,
-  numeric,
   boolean,
   integer,
-  jsonb,
   pgEnum,
 } from 'drizzle-orm/pg-core'
 import { relations } from 'drizzle-orm/relations'
-import { user } from './auth'
 
 export const invites = pgTable('invites', {
   id: uuid('uuid4').notNull().defaultRandom().primaryKey(),
@@ -24,9 +21,7 @@ export const roles = pgEnum('roles', ['admin', 'editor', 'user'])
 
 export const profiles = pgTable('profiles', {
   id: uuid('id').primaryKey().notNull().defaultRandom(),
-  userId: text('user')
-    .notNull()
-    .references(() => user.id),
+  userId: text('user').notNull(),
   firstName: text('first_name'),
   lastName: text('last_name'),
   createdAt: timestamp('created_at', { withTimezone: true }).defaultNow(),
