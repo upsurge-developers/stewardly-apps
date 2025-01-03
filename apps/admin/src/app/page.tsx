@@ -1,7 +1,7 @@
-import { Button } from "@stewardly/ui"
+import { Button } from '@stewardly/ui'
+import { auth } from '@stewardly/auth'
 
 export default function Home() {
-  return (
-    <Button variant="default">Hello</Button>
-  )
+  console.log({ auth })
+  return <Button variant="default">Hello</Button>
 }
