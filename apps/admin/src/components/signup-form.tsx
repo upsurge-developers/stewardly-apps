@@ -6,10 +6,10 @@ import { Card, CardContent } from '~/components/ui/card'
 import { Input } from '~/components/ui/input'
 import { Label } from '~/components/ui/label'
 
-import { login } from '~/actions'
+import { signUp } from '~/actions'
 import Link from 'next/link'
 
-export function LoginForm({
+export function SignUpForm({
   className,
   ...props
 }: React.ComponentProps<'div'>) {
@@ -17,13 +17,23 @@ export function LoginForm({
     <div className={cn('flex flex-col gap-6', className)} {...props}>
       <Card className="overflow-hidden">
         <CardContent className="grid p-0 md:grid-cols-2">
-          <form action={login} className="p-6 md:p-8">
+          <form action={signUp} className="p-6 md:p-8">
             <div className="flex flex-col gap-6">
               <div className="flex flex-col items-center text-center">
-                <h1 className="text-2xl font-bold">Welcome back</h1>
+                <h1 className="text-2xl font-bold">Hey there!</h1>
                 <p className="text-balance text-neutral-500 dark:text-neutral-400">
-                  Login to your Stewardly account
+                  Sign Up for your Stewardly account
                 </p>
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="name">Full Name</Label>
+                <Input
+                  id="name"
+                  type="text"
+                  name="name"
+                  placeholder="John Doe"
+                  required
+                />
               </div>
               <div className="grid gap-2">
                 <Label htmlFor="email">Email</Label>
@@ -38,17 +48,11 @@ export function LoginForm({
               <div className="grid gap-2">
                 <div className="flex items-center">
                   <Label htmlFor="password">Password</Label>
-                  <Link
-                    href="/auth/forgot-password"
-                    className="ml-auto text-sm underline-offset-2 hover:underline"
-                  >
-                    Forgot your password?
-                  </Link>
                 </div>
                 <Input id="password" name="password" type="password" required />
               </div>
               <Button type="submit" className="w-full" variant="success">
-                Login
+                Sign Up
               </Button>
               <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-neutral-200 dark:after:border-neutral-800">
                 <span className="relative z-10 bg-white px-2 text-neutral-500 dark:bg-neutral-950 dark:text-neutral-400">
@@ -68,16 +72,16 @@ export function LoginForm({
                     className="text-white transform transition-all duration-200 ease-in-out hover:cursor-pointer hover:opacity-70"
                     network="facebook"
                   />
+                  <span className="sr-only">Login with Meta</span>
                 </span>
-                <span className="sr-only">Login with Meta</span>
               </div>
               <div className="text-center text-sm">
-                Don&apos;t have an account?{''}
+                Have an account?{''}
                 <Link
-                  href="/auth/sign-up"
+                  href="/auth/login"
                   className="underline underline-offset-4"
                 >
-                  Sign up
+                  Sign in
                 </Link>
               </div>
             </div>
